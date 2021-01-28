@@ -1,14 +1,6 @@
-'''
-Hacer un programa que tenga la funcion de listar las carpetas y archivos y ordenar por tamaño o fecha, y que muestre
- 
-si hay archivos duplicados en contenido
-'''
-import os
-import time
-from pathlib import Path
 import os, sys
 import hashlib
- #Funcion para encontrar archivos duplicados
+ 
 def encontrarDuplicados(directorio):
     #Diccionario de duplicados
     dups = {}
@@ -58,15 +50,16 @@ def imprimirResultados(dict1):
             print('___________________')
     else:
         print('No se encontraron duplicados')
-
-#Funcionalidad completa para duplicados
-def DuplicadosMain(folder):
+ 
+def DuplicatesMain():
     #Diccionario de duplicados
     dups = {}
     #Ruta principal
-    if folder == "":
-        folder = '.'
-    for i in folder:
+    folders = input("Ingrese ruta de archivo (Vacio = Ruta de Script): ")
+    folders = folders.split()
+    if folders == "":
+        folders = '.'
+    for i in folders:
         #Iterar sobre la ruta ingresada
         if os.path.exists(i):
             #Encontrar los archivos duplicados y agregarlos al diccionario de duplicados
@@ -76,28 +69,5 @@ def DuplicadosMain(folder):
             sys.exit()
     imprimirResultados(dups)
 
-#Funcion para listar archivos de un directorio
-def listar_directorio(ruta):
-    print("{:<20} {:<30} {:<20}".format("Archivo", "Ultima modificación", "Tamaño en Bytes"))
-    rutas = sorted(Path(ruta).iterdir(), key=os.path.getmtime, reverse=True)
-    for file in rutas:
-        archivo_ruta = os.path.join(ruta, file.name)
-        archivo_fecha_modificacion = time.ctime(os.path.getmtime(archivo_ruta))
-     
-        archivo_tamano = os.path.getsize(archivo_ruta)
-        #Esta variable es una bandera para identificar si tenemos un folder o archivo
-        es_archivo = os.path.isfile(archivo_ruta)
-        if es_archivo:
-            print("{:<20} {:<30} {:<20}".format(file.name, archivo_fecha_modificacion, archivo_tamano))
-        else:
-            print("{:<20} {:<30}".format(file.name, archivo_fecha_modificacion))
-
-def main():
-    folder_ruta = input("Ingrese la ruta del folder, si es vacio entonces itera sobre la ruta de este script (Ejm:D:\Test): ")
-    if "" == folder_ruta:
-        folder_ruta = "."
-    listar_directorio(folder_ruta)
-    DuplicadosMain([folder_ruta])
-
 if __name__ == '__main__':
-    main()
+        main()
