@@ -22,4 +22,4 @@
 ```sql 
     ISNULL()
 ```
-* Esta sentencia varia dependiendo la herramienta a usar, si usamos Transact SQL (Version de SQL modificada con mejoras por microsoft) esta usa 2 parametros, en cambio si usamos MySQL en su compilador esta sentencisa usa 1 parametro.
+* Esta sentencia varia dependiendo la herramienta a usar, si usamos Transact SQL (Version de SQL modificada con mejoras por microsoft) esta usa 2 parametros, en cambio si usamos MySQL en su compilador esta sentencisa usa 1 parametro. En base a esto podemos manejar valores nulos para poder operar con ellos.
